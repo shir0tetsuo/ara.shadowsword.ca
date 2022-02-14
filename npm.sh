@@ -1,7 +1,10 @@
 #!/bin/bash
 
 #npm i -g npm
+
+# do this to reset
 #rm -r node_modules/
+
 #rm package-lock.json
 #npm cache clean --force
 #npm prune
@@ -30,3 +33,8 @@ npm install --save moment
 npm install --save canvas
 npm install --save socket.io
 npm install --save crypto-js
+npm i -g rimraf
+npm i -D sqlite3
+rimraf node_modules
+npm i
+#npm audit fix

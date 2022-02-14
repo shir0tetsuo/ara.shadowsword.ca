@@ -1,6 +1,6 @@
 // shadowsword#0179 to my amazing wife for her sales
 const express = require('express'); // Main Server Handler
-const chalk = require('chalk'); // Console Vibrance
+//const chalk = require('chalk'); // Console Vibrance
 const SHA256 = require('crypto-js/sha256') // Cryptography
 const bcrypt = require('bcrypt') // https://www.npmjs.com/package/bcrypt
 const saltRounds = 10; // Cryptography
