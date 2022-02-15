@@ -1,5 +1,7 @@
 const SHA256 = require('crypto-js/sha256')
 
+All_Item_Types = ['Blanket','Earing','Necklace','Jewelry','Bracelet','Bibs','Sleepers']
+
 function zeroPad(num, places) {
   var zero = places - num.toString().length + 1;
   return Array(+(zero > 0 && zero)).join("0") + num;
@@ -22,6 +24,6 @@ module.exports = {
     return SHA256(name).toString().substring(0,10);
   },
   item_classification: function(id) {
-    return selection(id, ['Blanket','Earing','Necklace','Jewelry','Bracelet'])
+    return selection(id, All_Item_Types)
   }
 }

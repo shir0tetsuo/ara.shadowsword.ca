@@ -103,7 +103,7 @@ async function readFile(filePath) {
 }
 
 // Dynamic Content Loader
-async function DC_Load(cookies) {
+async function DC_Load(cookies, onloader) {
   var user = false;
   if (cookies.user_email && cookies.hashed_pwd) {
     user = await U.findOne({
@@ -117,16 +117,28 @@ async function DC_Load(cookies) {
   }
   let header = await readFile('./dynamic_content/header.html')
   let pub_ver = await readFile('./dynamic_content/version.txt')
+  let test_block = await readFile('./dynamic_content/test_block.html')
+  let navbar = await readFile('./dynamic_content/navbar.html')
+  var header_body = '<body onload="landing()">';
+  if (onloader) header_body = `<body onload="${onloader}">`;
   // let top_head = await readFile('./')
   // let loader =
 
   class DC_Load{
     constructor(headerFile, versionFile, user){
       this.header = headerFile;
+      this.header_body = header_body;
+      this.footer = '</body></html>'
+
       this.pub_ver = versionFile;
       this.start_date = StartDate;
+
       this.user = user;
+
       this.test = '<body>'+ this.pub_ver + 'HELLO, WORLD!</body></html>'
+
+      this.c_test_block = '<body>'+ test_block +'</body></html>';
+      this.c_navbar = navbar;
     }
   }
   return await new DC_Load(header, pub_ver, user)
@@ -155,7 +167,7 @@ APPLICATION.use(function(err, req, res, next) {
 })
 
 APPLICATION.get('/', async (req, res) => {
-  let DC_Parts = await DC_Load(req.cookies);
+  let DC_Parts = await DC_Load(req.cookies, `landing()`);
   console.log(DC_Parts)
-  res.status(200).send(DC_Parts.header + DC_Parts.test)
+  res.status(200).send(DC_Parts.header + DC_Parts.header_body + DC_Parts.c_navbar + DC_Parts.footer)
 })

@@ -1,7 +1,10 @@
 const Common = require('../common_functions.js')
 
 // A formal item name
-ItemName = 'test_item'
+ItemName = 'Super Bracelet Thing'
+
+// A description of the item
+ItemDescription ='A simple test item.'
 
 // The Image in Content Distribution Node
 MaterialRef = 'something.jpg'
@@ -20,6 +23,7 @@ exports.material_data = {
 
   material_ref: MaterialRef,
   item_formalname: ItemName,
+  item_description: ItemDescription,
 
   item_identity: Common.hash(ItemName + MaterialRef), // World Object ID
 
